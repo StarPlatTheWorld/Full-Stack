@@ -12,16 +12,13 @@ from flask_cors import CORS
 # --- Flask Instance --- 
 app = Flask(__name__)
 CORS(app)
-app.config['SECRET_KEY'] = "i_am_a_secret"
+# --- INSERT SECRET KEY HERE ---
 
 
-# --- AUTH0 Connection ---
-AUTH0_DOMAIN = 'dev-d1zglhvx0fh44i2n.us.auth0.com'
-AUTH0_CLIENT_ID = 'dAdbXIxIgp7wThua7ByaCwM4Tht1eCKz'
-AUTH0_CLIENT_SECRET = 'BvZB7CEpxFjbVTu1X8D1PvwdH3xDUXIv1AiTzI-AWOHjcmEgfFJYKoW4H0_a-P6K'
-AUTH0_API_IDENTIFIER = 'https://dev-d1zglhvx0fh44i2n.us.auth0.com/api/v2/'
+# --- INSERT AUTH0 CONNECT BELOW ---
 
-AUTH0_API_URL = 'https://dev-d1zglhvx0fh44i2n.us.auth0.com/api/v2/'
+
+# --- INSERT AUTH0 CONNECTION ABOVE ---
 
 # --- MongoDB Connection --- 
 client = MongoClient("localhost", 27017)
@@ -61,7 +58,7 @@ def jwt_required(func):
         if not token:
             return jsonify({'message': 'Token is missing'}), 401
         try:
-            data = jwt.decode( token, app.config['SECRET_KEY'] )
+            data = jwt.decode( token,  ) # <-- Insert Secret Key after Token
         except:
             return jsonify({'message': 'Invalid token'}), 401
         
@@ -77,7 +74,7 @@ def admin_required(func):
     @wraps(func)
     def admin_required_wrapper(*args, **kwargs):
         token = request.headers['x-access-token']
-        data = jwt.decode(token, app.config['SECRET_KEY'])
+        data = jwt.decode(token, ) # <-- Insert Secret Key after Token
         if data["admin"]:
             return func(*args, **kwargs)
         else:
