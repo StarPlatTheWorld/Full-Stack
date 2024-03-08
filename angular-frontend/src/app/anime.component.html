@@ -1,0 +1,70 @@
+<div class="container" style="margin-top:10px;">
+    <div class="row">
+        <div class="col-sm-12">
+            <div *ngFor="let anime of anime_list | async">
+                <div class="card text-white mb-3" style= "width: 50rem; margin: auto">
+                    <div class="card-header text-center">
+                        <img src="{{anime.image_url}}">
+                    </div>
+                    <div class="card-body">
+                        Title: {{ anime.title }}<br>
+                        English Title: {{ anime.title_english }}<br><br>
+                        Type: {{ anime.type }}<br>
+                        Source: {{ anime.source }}<br>
+                        Producer: {{ anime.producer }}.<br>
+                        Studio: {{ anime.studio }}.  <br><br>
+                        Episodes: {{ anime.episodes }} <br>
+                        Episode Run-Time: {{ anime.duration }}<br><br>
+                        Status: {{ anime.status}}<br>
+                        Aired: {{ anime.aired_string }}<br>
+                        Genre: {{ anime.genre }}<br><br>
+                    </div>
+                    <div *ngFor="let review of reviews | async" class="card-footer">
+                        User: {{ review.username }}<br>
+                        Review: {{ review.review }}<br>
+                        Stars: {{ review.stars }}<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Please review this anime</h2>
+            <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="username">Name</label>
+                    <input type="text" id="username" name="username"
+                    class="form-control"
+                    formControlName="username" [ngClass]="{ 'error': isInvalid('username')}">
+                </div>
+                <div class="form-group">
+                    <label for="review">Please leave your review below
+                    </label>
+                    <textarea id="review" rows="3" name="review"
+                    class="form-control"
+                    formControlName="review" [ngClass]="{'error': isInvalid('review')}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="stars">Please provide a rating 
+                    (5 = best)</label>
+                    <select id="stars" name="stars"
+                    class="form-control"
+                    formControlName="stars">
+                        <option value="1">1 star</option>
+                        <option value="2">2 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="5">5 stars</option>
+                    </select> 
+                </div>
+                <span *ngIf="isIncomplete()">
+                    You must complete all fields
+                </span><br>
+                <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

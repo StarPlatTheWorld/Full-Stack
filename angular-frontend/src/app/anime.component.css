@@ -1,0 +1,20 @@
+.error {
+    background-color: #fff0f0;
+}
+
+.card {
+    background-color: #5e1212;
+}
+
+.btn {
+    color: white;
+}
+
+h2 {
+    color: white;
+}
+
+input#title, input#title_english, input#image_url {
+    display: none;
+    visibility: none;
+}

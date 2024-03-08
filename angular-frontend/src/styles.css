@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #242526 !important; }
+
+nav {
+    background-color: #AC3535  !important;
+    color: white;
+}
+
+button {
+    background-color: #911d21  !important;
+    border-color: #911d21 !important;
+    
+}
+
+button:hover {
+    background-color: #E45A5A   !important;
+    border-color: #E45A5A !important;
+}
+
+a {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+a:hover {
+    color: lightcoral !important;
+}

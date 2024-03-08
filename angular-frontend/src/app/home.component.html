@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <img src="assets/AnimeDirect.png" class="center">
+            <ng-container *ngIf = "authService.isAuthenticated$ | async; else loggedOut">
+                <h2>Welcome to AnimeDirect! Please use the navigation menu to get started!</h2>
+            </ng-container>
+            <ng-template #loggedOut>
+                <h2>Welcome to AnimeDirect! Please login to get started!</h2>
+            </ng-template>
+        </div>
+    </div>
+</div>
